@@ -7,7 +7,7 @@
 7:30 pm ~ 9:30 pm
 
 ## Meterial & Rule
-- Vue.js Guide Document
+- [Vue.js Guide Document](https://kr.vuejs.org/v2/guide/)
 - 공유할 발표준비 자료
 - 매주 한 사람이 발표를 하고 발표내용을 주제로 확인 및 토론을 하는 방식
 - 준비를 해오지 못할 경우 예비발표자의 발표자료를 기반으로 스터디 진행
