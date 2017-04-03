@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Computed</title>
+    <style>
+        .redColor { background-color:red; }
+        .blueColor { background-color: blue; }
+        .box { width:100px; height:100px; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--<button @click="increase">increase</button>-->
+        <!--<button @click="decrease">decrease</button>-->
+        <button @click="counter++">increase</button>
+        <button @click="counter--">decrease</button>
+        <button @click="secondCounter++">increaseSecond</button>
+        <p>Counter: {{ counter }} | {{ secondCounter }}</p>
+        <p>Result: {{ result() }}</p>
+        <p>Output: {{ output }}</p>
+        <hr>
+        <input type="text" v-model="counter">
+        <div class="box" :class="(isClickedBox) ? defaultStyle : clickStyle" @click="boxChange" :style="centerStyle"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                counter: 0,
+                secondCounter: 0,
+                defaultStyle: {
+                    redColor: true,
+                    blueColor: false
+                },
+                clickStyle: {
+                    redColor: false,
+                    blueColor: true
+                },
+                isClickedBox: false,
+                centerStyle: {
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    'margin-top': '-50px',
+                    'margin-left': '-50px'
+                }
+            },
+            computed: {
+                output: function() {
+                    console.log('output');
+                    return this.counter > 5 ? '5보다 큰 수' : '5보다 작은 수';
+                }
+            },
+            methods: {
+//                increase: function() {
+//                    this.counter++;
+//                    this.result = this.counter > 5 ? '5보다 큰 수' : '5보다 작은 수';
+//                },
+//                decrease: function() {
+//                    this.counter--;
+//                    this.result = this.counter > 5 ? '5보다 큰 수' : '5보다 작은 수';
+//                },
+                result: function() {
+                    console.log('result');
+                    return this.counter > 5 ? '5보다 큰 수' : '5보다 작은 수';
+                },
+                boxChange: function() {
+                    this.isClickedBox = !this.isClickedBox;
+                }
+            },
+            watch: {
+                counter: function(value) {
+                    var vm = this;
+                    setTimeout(function() {
+                        vm.counter = 0;
+                    }, 2000);
+                }
+            }
+        });
+
+        /*
+        * method: recurculate every time, no caching so recurculate
+        * computed: result caching and detect diff
+        * */
+    </script>
+</body>
+</html>
